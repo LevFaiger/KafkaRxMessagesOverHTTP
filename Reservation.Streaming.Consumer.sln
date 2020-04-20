@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.Streaming.Consumer", "Reservation.Streaming.Consumer\Reservation.Streaming.Consumer.csproj", "{1444A38D-17CB-4192-A4CC-0B9F60B19AD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.Streaming.Producer", "..\Reservation.Streaming.Producer\Reservation.Streaming.Producer.csproj", "{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.Streaming.Producer", "..\Reservation.Streaming.Consumer\Reservation.Streaming.Producer\Reservation.Streaming.Producer.csproj", "{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
