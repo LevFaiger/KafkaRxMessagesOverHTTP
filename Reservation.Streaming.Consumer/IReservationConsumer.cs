@@ -6,6 +6,6 @@ namespace Reservation.Streaming.Consumer
 {
     public interface IReservationConsumer
     {
-        void Listen(Action<string> message);
+        void Listen(Dictionary<string, Action<string>> messages);
     }
 }
