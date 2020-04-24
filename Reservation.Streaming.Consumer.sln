@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.Streaming.Consumer", "Reservation.Streaming.Consumer\Reservation.Streaming.Consumer.csproj", "{1444A38D-17CB-4192-A4CC-0B9F60B19AD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.Streaming.Consumer", "Reservation.Streaming.Consumer\Reservation.Streaming.Consumer.csproj", "{1444A38D-17CB-4192-A4CC-0B9F60B19AD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservation.Streaming.Producer", "..\Reservation.Streaming.Consumer\Reservation.Streaming.Producer\Reservation.Streaming.Producer.csproj", "{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.Streaming.Producer", "Reservation.Streaming.Producer\Reservation.Streaming.Producer.csproj", "{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationWeb", "ReservationWeb\ReservationWeb.csproj", "{820E4EF3-2355-4197-AD0E-4754CF27CEE0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1444A38D-17CB-4192-A4CC-0B9F60B19AD4} = {1444A38D-17CB-4192-A4CC-0B9F60B19AD4}
+		{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA} = {F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,10 @@ Global
 		{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820E4EF3-2355-4197-AD0E-4754CF27CEE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820E4EF3-2355-4197-AD0E-4754CF27CEE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820E4EF3-2355-4197-AD0E-4754CF27CEE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820E4EF3-2355-4197-AD0E-4754CF27CEE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
