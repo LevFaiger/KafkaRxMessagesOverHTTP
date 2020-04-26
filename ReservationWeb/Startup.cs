@@ -26,45 +26,62 @@ namespace ReservationWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ReservationContext>(opt =>opt.UseInMemoryDatabase("ReservationList"));
-            services.AddControllers();
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
                     builder =>
                     {
                         builder
-                        //.WithOrigins("http://localhost:3000")
-                        .AllowAnyOrigin()
+                        .WithOrigins("http://localhost:3000")
+                       
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                      ;
+                        .AllowCredentials()
+                        .Build();
                     });
             });
-
+            services.AddDbContext<ReservationContext>(opt =>opt.UseInMemoryDatabase("ReservationList"));
+            services.AddControllers();
+            services.AddSignalR(config =>
+            {
+                config.EnableDetailedErrors = true;
+            });
 
            
+            
+            
+
+
+            services.AddSingleton<ReservationMessageRelay>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseCors();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseRouting();
-            if (env.IsDevelopment())
-            {
-                app.UseCors();
-            }
+
+           
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            app.UseEndpoints(routes => {
+                routes.MapHub<ReservationHub>("/reservationhub");
+            });
+         
+
+            app.ApplicationServices.GetService<ReservationMessageRelay>();
         }
     }
 }

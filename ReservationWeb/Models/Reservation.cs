@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ReservationWeb.Models
 {
-    public class Reservation
+    public class ReservationModel
     {
         public int Id { get; set; }
         public string Description { get; set; }

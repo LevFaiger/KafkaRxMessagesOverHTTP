@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReservationWeb.Models;
+using Reservation.Streaming.Producer;
 
 namespace ReservationWeb.Controllers
 {
@@ -14,22 +15,24 @@ namespace ReservationWeb.Controllers
     public class ReservationsController : ControllerBase
     {
         private readonly ReservationContext _context;
-
+        ReservationProducer producer;
+        
         public ReservationsController(ReservationContext context)
         {
             _context = context;
+            producer = new ReservationProducer();
         }
 
         // GET: api/Reservations
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservationItems()
+        public async Task<ActionResult<IEnumerable<ReservationModel>>> GetReservationItems()
         {
             return await _context.ReservationItems.ToListAsync();
         }
 
         // GET: api/Reservations/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Reservation>> GetReservation(int id)
+        public async Task<ActionResult<ReservationModel>> GetReservation(int id)
         {
             var reservation = await _context.ReservationItems.FindAsync(id);
 
@@ -45,7 +48,7 @@ namespace ReservationWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation(int id, Reservation reservation)
+        public async Task<IActionResult> PutReservation(int id, ReservationModel reservation)
         {
             if (id != reservation.Id)
             {
@@ -77,8 +80,10 @@ namespace ReservationWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
+        public async Task<ActionResult<ReservationModel>> PostReservation(ReservationModel reservation)
         {
+            // move Produce to async
+            //await producer.Produce(reservation.Description);
             _context.ReservationItems.Add(reservation);
             await _context.SaveChangesAsync();
 
@@ -87,7 +92,7 @@ namespace ReservationWeb.Controllers
 
         // DELETE: api/Reservations/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Reservation>> DeleteReservation(int id)
+        public async Task<ActionResult<ReservationModel>> DeleteReservation(int id)
         {
             var reservation = await _context.ReservationItems.FindAsync(id);
             if (reservation == null)

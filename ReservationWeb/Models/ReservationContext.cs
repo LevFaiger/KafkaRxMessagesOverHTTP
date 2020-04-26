@@ -13,6 +13,6 @@ namespace ReservationWeb.Models
         {
         }
 
-        public DbSet<Reservation> ReservationItems { get; set; }
+        public DbSet<ReservationModel> ReservationItems { get; set; }
     }
 }

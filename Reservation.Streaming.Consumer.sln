@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.Streaming.Consu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.Streaming.Producer", "Reservation.Streaming.Producer\Reservation.Streaming.Producer.csproj", "{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationWeb", "ReservationWeb\ReservationWeb.csproj", "{820E4EF3-2355-4197-AD0E-4754CF27CEE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationWeb", "ReservationWeb\ReservationWeb.csproj", "{820E4EF3-2355-4197-AD0E-4754CF27CEE0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1444A38D-17CB-4192-A4CC-0B9F60B19AD4} = {1444A38D-17CB-4192-A4CC-0B9F60B19AD4}
 		{F693E4C7-1D1A-44CC-B123-1BEC722C3CDA} = {F693E4C7-1D1A-44CC-B123-1BEC722C3CDA}

@@ -1,10 +1,13 @@
 import React,{ useState, useEffect }  from 'react';
-
+import { HubConnectionBuilder } from '@aspnet/signalr'
 
 function Main(props) {
     const [reservations, setReservations] = useState([]);
     const [error, setError] = useState(null);
-    const [rows, SetRows] = useState(10)
+    const [rows, SetRows] = useState(10);
+
+    const [hub, setHub] = useState(null)
+  const [requester, setRequester] = useState(null)
     
     useEffect(() => {
 
@@ -24,17 +27,26 @@ function Main(props) {
      
        
        
-        // POST request using fetch inside useEffect React hook
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                "Id":3,
-              "Description":"R3"
-            })
-        };
-       // fetch('http://localhost:49733/api/Reservations', requestOptions).then(response => response.json()).then(data => console.log(data));
-    
+ 
+          // SignalR implementation
+         
+     const hub = new HubConnectionBuilder()
+     .withUrl("http://localhost:49733/reservationhub")
+     //.configureLogging(signalR.LogLevel.Information)
+     .build();
+  
+     hub.start()
+     .then(() => console.log('Connection started!'))
+     .catch(err => console.log('Error while establishing connection :('));;
+ 
+     hub.on("reservationticks", data=>{
+      setRequester(data)
+      console.log(data);
+    }) 
+   
+     /* hub.start().then(()=>{
+      setHub(hub)
+    })  */
     
     }, []);
 
@@ -56,6 +68,7 @@ function Main(props) {
 
     
     }
+    
   }
   return (
     <div>
